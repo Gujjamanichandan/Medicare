@@ -1,0 +1,140 @@
+.why-choose-us-section {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0px 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Left Column */
+.left-column-last {
+  background-color: #ecf8f2;
+  padding: 60px;
+  border-radius: 10px;
+  flex: 0.6 1;
+  margin-right: 20px; 
+}
+
+.small-text {
+  color: #368387;
+  background-color: rgba(67, 186, 127, 0.1);
+  border-radius: 18.5px;
+  padding: 4px 16px;
+  font-size: 18px;
+  line-height: 1.76;
+  display: inline-block;
+}
+
+.main-title {
+  font-size: 30px;
+  line-height: 1.2; 
+  margin: 20px 0; 
+}
+
+/* List Style */
+.why-choose-us-list {
+  list-style: none; 
+  padding-left: 0; 
+  margin: 20px 0; 
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  font-size: 18px; 
+  margin: 10px 0; 
+}
+
+.list-item::before {
+  content: "✔"; 
+  color: #558a8d; 
+  margin-right: 10px; 
+}
+
+/* Button Design */
+.book-appointment-btn {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 30px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.book-appointment-btn:hover {
+  background-color: #558a8d;
+}
+
+/* Right Column */
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container {
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px; 
+  height: 70px; 
+  background-color: #368387; 
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px; 
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+  background-color: #558a8d; 
+}
+
+/* Right Column with Background Video */
+.right-column {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background video */
+.right-column::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(./video3.mp4) no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.right-column video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  z-index: -1;
+}

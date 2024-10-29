@@ -1,0 +1,70 @@
+.home {
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* First Section */
+
+#home-bg {
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-image: url("/public/bg-fsec.png");
+  background-size: 300px;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+.homepage-first-section {
+  align-items: left;
+  padding: 0 20px;
+  color: #558a8d;
+}
+
+.doctor-card img {
+  border-radius: 0px;
+}
+
+.title {
+  font-size: 75px;
+  color: #558a8d;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* Second Section */
+.homepage-second-section {
+  padding: 0px 0px;
+  background-color: #ffffff;
+  text-align: left;
+  color: #368387;
+}
+
+.two-columns {
+  display: flex;
+}
+
+/* Column Styles */
+.column {
+  flex: 1;
+  padding: 0 20px;
+  width: 50%;
+}
+
+#home-text {
+  margin-top: -70px;
+}
+
+#home-text2 {
+  margin-top: -95px;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 80px 10px;
+}

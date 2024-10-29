@@ -1,0 +1,79 @@
+body {
+  font-family: "Noto Sans", sans-serif; 
+  margin: 0px !important;
+}
+
+.first-section {
+  background-color: #558a8d;
+  color: white;
+  padding: 10px 0; 
+}
+
+.first-section .container {
+  max-width: 1200px;
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.second-section {
+  background-color: white;
+  color: #368387;
+  padding: 10px 0;
+  border-bottom: 1px solid #558a8d59;
+}
+
+.second-section .container {
+  max-width: 1200px;
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  width: 270px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #368387;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: #368387;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Login Button */
+.login-button {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif; 
+  font-size: 18px; 
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+a,
+button {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
