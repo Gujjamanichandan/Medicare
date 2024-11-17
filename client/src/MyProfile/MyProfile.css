@@ -1,0 +1,126 @@
+.profile-page {
+  display: flex;
+  margin: 20px;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.profile-left-sidebar {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-right-sidebar {
+  flex: 3;
+  padding: 20px;
+}
+.profile-left-sidebar h2,
+.profile-right-sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #558a8d;
+}
+
+.profile-info .profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.profile-info .profile-row label {
+  font-weight: bold;
+  color: #555;
+}
+
+.profile-info .profile-row span {
+  color: #333;
+}
+
+.appointment-list {
+  list-style: none;
+  padding: 0;
+}
+
+.appointment-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-item h4 {
+  margin-bottom: 6px;
+  margin-top: 0px;
+  font-size: 18px;
+  color: #1e73be;
+}
+
+.appointment-item p {
+  margin: 5px 0;
+}
+
+.appointment-item .view-details-link {
+  text-decoration: none;
+  color: #1e73be;
+  font-weight: bold;
+}
+
+.appointment-item .view-details-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.cancel-button {
+  background-color: #558a8d;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #ff1a1a;
+}
+
+.appointment-actions {
+  margin-top: 10px;
+}
+.appointments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.two-columns-pro {
+  display: flex;
+  justify-content: space-between;
+}
+
+.patient-details-pro,
+.appointment-details-column {
+  width: 48%; /* Equal width for two columns */
+}
+
+.patient-details-pro h4,
+.appointment-details-column h4 {
+  margin-bottom: 10px;
+}

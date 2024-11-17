@@ -82,3 +82,54 @@ p {
 .book-appointment-btn:hover {
   background-color: #155a8a;
 }
+
+.left-sidebar {
+  background-color: #f9f9f9; /* Light background for the sidebar */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+  margin-right: 20px; /* Space between the sidebar and the doctor list */
+}
+
+.filter-title {
+  color: #558a8d; /* Title color matching the site color */
+  margin-bottom: 15px;
+  font-size: 20px; /* Title font size */
+}
+
+.left-sidebar label {
+  display: block; /* Make labels block to stack elements */
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #558a8d; /* Matching label color */
+}
+
+.left-sidebar input,
+.left-sidebar select {
+  padding: 10px;
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 5px; /* Rounded corners */
+  width: 100%; /* Full width */
+  margin-bottom: 15px; /* Space between inputs */
+  font-size: 16px; /* Font size for inputs */
+}
+
+.left-sidebar input:focus,
+.left-sidebar select:focus {
+  border-color: #558a8d; /* Border color on focus */
+}
+
+.login-button-2 {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+}
+#search {
+  width: 93%;
+}

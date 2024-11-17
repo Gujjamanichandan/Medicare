@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from React Router DOM
+import AuthContext from '../context/AuthContext'; // Import AuthContext for login check
 import './Doctors.css';
 
 const Doctors = () => {
+  const { user } = useContext(AuthContext); // Access user data from context
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -57,19 +59,26 @@ const Doctors = () => {
       <div className="contact-header">
         <div className="container">
           <h1>Our Providers</h1>
-          {/* Vectors for design */}
         </div>
       </div>
 
       <div className="doctors-page">
         <div className="left-sidebar">
+          <h2 className="filter-title">Find the Right Specialist for You</h2>
+          
+          {/* Search input */}
+          <label htmlFor="search">Search by name:</label>
           <input 
             type="text" 
-            placeholder="Search by name..." 
+            id="search"
+            placeholder="Enter doctor's name..." 
             value={searchQuery} 
             onChange={handleSearchChange} 
           />
-          <select value={selectedSpecialization} onChange={handleSpecializationChange}>
+          
+          {/* Specialization filter */}
+          <label htmlFor="specialization">Filter by Specialization:</label>
+          <select id="specialization" value={selectedSpecialization} onChange={handleSpecializationChange}>
             <option value="">All Specializations</option>
             {specializations.map((spec) => (
               <option key={spec} value={spec}>{spec}</option>
@@ -78,24 +87,39 @@ const Doctors = () => {
         </div>
 
         <div className="doctors-list">
-          <div className="doctors-grid">
-            {filteredDoctors.length > 0 ? (
-              filteredDoctors.map((doctor) => (
-                // Use React Router DOM's Link component for navigation
-                <Link to={`/doctors/${doctor.id}`} className="doctor-card" key={doctor.id}>
-                  <img 
-                    src={`data:image/jpeg;base64,${doctor.image}`} 
-                    alt={doctor.doctor_name || 'Doctor'} 
-                  />
-                  <h3>{doctor.doctor_name || 'Name Not Available'}</h3>
-                  <p>{doctor.qualification}</p>
-                  <button className="book-appointment-btn">Book Appointment</button>
-                </Link>
-              ))
-            ) : (
-              <h3>No Doctors Found</h3>
-            )}
-          </div>
+          {user ? (
+            <div className="doctors-grid">
+              {filteredDoctors.length > 0 ? (
+                filteredDoctors.map((doctor) => (
+                  <Link to={`/doctors/${doctor.id}`} className="doctor-card" key={doctor.id}>
+                    <img 
+                      src={`data:image/jpeg;base64,${doctor.image}`} 
+                      alt={doctor.doctor_name || 'Doctor'} 
+                      className="doctor-image"
+                    />
+                    <h3>{doctor.doctor_name || 'Name Not Available'}</h3>
+                    <p>{doctor.specialization}</p>
+                    <p>{doctor.qualification}</p>
+                    <button className="book-appointment-btn">Book Appointment</button>
+                  </Link>
+                ))
+              ) : (
+                <h3>No Doctors Found</h3>
+              )}
+            </div>
+          ) : (
+            <div className="login-message">
+            <p>
+  <strong style={{ fontSize: '25px', marginBottom: '15px' }}>
+    Please login to book an appointment.
+  </strong>
+</p>
+
+              <Link to="/login">
+                <button className="login-button-2">Login</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

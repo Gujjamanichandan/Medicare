@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import './Auth.css';
 
 const Signup = () => {
@@ -8,6 +8,7 @@ const Signup = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); // State to hold the success message
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,13 +25,26 @@ const Signup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, phone, password }),
+        body: JSON.stringify({ name, email, phone, password, role: 'patient' }), // Role is 'patient' by default
       });
 
       const data = await response.json();
       if (response.ok) {
         console.log('Signup successful:', data);
-        // Redirect to login or home page after successful signup
+        // Clear the form fields
+        setName('');
+        setEmail('');
+        setPhone('');
+        setPassword('');
+        setConfirmPassword('');
+        
+        // Display success message
+        setSuccessMessage('User successfully created!');
+        
+        // Optionally redirect after some time
+        // setTimeout(() => {
+        //   window.location.href = "/login"; // Redirect to login page after success
+        // }, 2000); // Wait 2 seconds before redirecting
       } else {
         console.error('Signup failed:', data.message);
         alert(data.message);
@@ -103,6 +117,8 @@ const Signup = () => {
 
         <button type="submit" className="auth-button">Sign Up</button>
         
+        {successMessage && <p style={{fontSize: '20px',fontWeight: 'bold', marginTop: '10px' }}>{successMessage}</p>} {/* Success message */}
+
         <p className="auth-footer">
           Already have an account? <Link to="/login" style={{ color: '#368387' }}>Login here</Link>
         </p>
