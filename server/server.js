@@ -1,14 +1,17 @@
+// Load environment variables from the .env file at the very beginning
+require('dotenv').config();  // Ensure dotenv is loaded before any other code
+
 const express = require('express');
 const cors = require('cors');
 const doctorsRoutes = require('./routes/doctors');
 const specializationsRoutes = require('./routes/specializations');
 const appointmentsRoutes = require('./routes/appointments');
 const contactRoutes = require('./routes/contact');
-const loginRoutes = require('./routes/login'); // Import the login route
-const signupRoutes = require('./routes/signup'); // Import the signup route
+const loginRoutes = require('./routes/login'); 
+const signupRoutes = require('./routes/signup'); 
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;  // Use the port from the .env file or default to 5000
 
 // Middleware
 app.use(cors());
@@ -19,8 +22,8 @@ app.use('/doctors', doctorsRoutes);
 app.use('/specializations', specializationsRoutes);
 app.use('/appointments', appointmentsRoutes);
 app.use('/contact', contactRoutes);
-app.use('/api/login', loginRoutes); // Setup login route with the correct path
-app.use('/api/signup', signupRoutes); // Setup signup route
+app.use('/api/login', loginRoutes); 
+app.use('/api/signup', signupRoutes); 
 
 // Start the server
 app.listen(PORT, () => {

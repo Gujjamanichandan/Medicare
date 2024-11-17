@@ -1,42 +1,48 @@
 const express = require('express');
-const bcrypt = require('bcrypt'); // Ensure bcrypt is installed
-const db = require('../config/db'); // Update this path based on your database connection
 const router = express.Router();
+const db = require('../config/db'); // Ensure your DB connection is set up here
+const bcrypt = require('bcryptjs'); // For password hashing
 
-// POST /api/signup
+// POST route to handle signup
 router.post('/', async (req, res) => {
-  const { name, email, phone, password } = req.body;
+  const { name, email, phone, password, role } = req.body;
 
-  // Simple validation (add more as needed)
-  if (!name || !email || !phone || !password) {
-    return res.status(400).json({ message: 'All fields are required' });
+  // Validate required fields
+  if (!name || !email || !phone || !password || !role) {
+    return res.status(400).json({ message: 'All fields are required.' });
   }
 
-  try {
-    // Check if the user already exists
-    const queryCheck = 'SELECT * FROM users WHERE email = ?';
-    const [existingUser] = await db.execute(queryCheck, [email]);
-    
-    if (existingUser.length > 0) {
-      return res.status(409).json({ message: 'User already exists' });
+  // Check if the user already exists
+  const checkUserQuery = 'SELECT * FROM users WHERE email = ?';
+  db.query(checkUserQuery, [email], async (err, results) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ message: 'Server error while checking existing user.' });
     }
 
-    // Hash the password
+    if (results.length > 0) {
+      return res.status(400).json({ message: 'User already exists with this email.' });
+    }
+
+    // Hash the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert the new user into the database
-    const queryInsert = `
+    const query = `
       INSERT INTO users (name, email, phone, password, role) 
       VALUES (?, ?, ?, ?, ?)
     `;
-    const result = await db.execute(queryInsert, [name, email, phone, hashedPassword, 'Patient']);
 
-    // Respond with success message
-    res.status(201).json({ message: 'User registered successfully', userId: result[0].insertId });
-  } catch (error) {
-    console.error('Error during signup:', error); // Log the error to console
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
+    const values = [name, email, phone, hashedPassword, role];
+
+    db.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Error saving user:', err);
+        return res.status(500).json({ message: 'Error saving user' });
+      }
+      
+      res.status(201).json({ message: 'Signup successful', userId: result.insertId });
+    });
+  });
 });
 
 module.exports = router;
