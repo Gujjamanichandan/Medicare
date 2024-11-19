@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Make sure to import Link
-import AuthContext from '../context/AuthContext'; // Import AuthContext
+import { Link, useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 import './Auth.css';
 
 const Login = () => {
