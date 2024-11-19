@@ -31,6 +31,11 @@ const MyProfile = () => {
     return new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
   };
 
+  const formatTime = (time) => {
+    const [hours, minutes] = time.split(':');
+    return `${hours}:${minutes}`;
+  };
+
   const getStatusStyle = (status) => {
     switch (status) {
       case 'Cancelled':
@@ -99,7 +104,7 @@ const MyProfile = () => {
               <div key={appointment.id} className="appointment-card">
                 <div className="two-columns-pro">
                   {/* First Column: Patient Details */}
-                  <div className="patient-details-pro">
+                  <div className="patient-details">
                     <h4>Patient Details</h4>
                     <p>
                       <strong>Full Name:</strong> {appointment.full_name || 'N/A'}
@@ -125,6 +130,10 @@ const MyProfile = () => {
                     <p>
                       <strong>Appointment Date:</strong>{' '}
                       {formatDate(appointment.appointment_date)}
+                    </p>
+                    <p>
+                      <strong>Appointment Time:</strong>{' '}
+                      {appointment.start_time ? formatTime(appointment.start_time) : 'N/A'}
                     </p>
                     <p>
                       <strong>Symptoms:</strong> {appointment.symptoms || 'N/A'}
