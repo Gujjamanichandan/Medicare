@@ -352,3 +352,9 @@ form input {
 option {
   color: #558a8d;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
