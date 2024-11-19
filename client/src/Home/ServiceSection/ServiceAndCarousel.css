@@ -1,20 +1,21 @@
 .service-carousel-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px;
+  padding: 40px 20px;
   background-color: #ecf8f2;
   border-radius: 10px;
   transition: transform 0.8s ease-in-out;
+  overflow-x: hidden; /* Prevent overflow caused by inner elements */
 }
 
 .service-carousel-container.zoom-in {
-  transform: scale(1.06); 
+  transform: scale(1.06);
 }
 
 /* Service section */
 .service-section {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px; /* Adjust spacing for smaller screens */
 }
 
 .content-container {
@@ -26,22 +27,23 @@
   background-color: rgba(67, 186, 127, 0.1);
   border-radius: 18.5px;
   padding: 4px 16px;
-  font-size: 18px;
+  font-size: 16px; /* Smaller font for smaller screens */
   line-height: 1.76;
   display: inline-block;
   color: #368387;
 }
 
-.service-title {
-  font-size: 22px !important;
-  margin-top: 10px;
+.service-heading {
+  font-size: 2rem;
   color: #368387;
+  margin-top: 15px;
 }
 
 /* Carousel section */
 .service-carousel {
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Prevent horizontal scrolling caused by carousel */
+  width: 100%;
 }
 
 .carousel-inner {
@@ -54,6 +56,7 @@
   flex: 0 0 32.33%;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .service-card {
@@ -66,9 +69,9 @@
 }
 
 .service-card:hover {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  border-color: rgba(85, 138, 141, 0); 
+  border-color: rgba(85, 138, 141, 0);
 }
 
 .image-circle {
@@ -88,13 +91,13 @@
 }
 
 .service-title {
-  font-size: 20px;
+  font-size: 1.2rem;
   color: #368387;
   margin-bottom: 10px;
 }
 
 .service-card p {
-  font-size: 16px;
+  font-size: 0.9rem;
   color: #558a8d;
 }
 
@@ -128,8 +131,71 @@
   pointer-events: none;
 }
 
-.service-heading {
-  font-size: 35px;
-  color: #368387;
-  margin-top: 15px;
+/* Media Queries */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .carousel-inner {
+    gap: 10px; /* Reduce gap between cards */
+  }
+
+  .carousel-item {
+    flex: 0 0 48%; /* Two cards per row */
+  }
+
+  .service-heading {
+    font-size: 1.8rem;
+  }
+
+  .service-card p {
+    font-size: 0.85rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+}
+
+/* For phones (480px and below) */
+@media (max-width: 480px) {
+  .carousel-inner {
+    gap: 8px;
+  }
+
+  .carousel-item {
+    flex: 0 0 90%; /* Show one card at a time */
+  }
+
+  .service-heading {
+    font-size: 1.5rem;
+  }
+
+  .service-label {
+    font-size: 14px;
+    padding: 3px 12px;
+  }
+
+  .service-card {
+    padding: 15px;
+  }
+
+  .service-title {
+    font-size: 0.9rem;
+  }
+
+  .service-card p {
+    font-size: 0.8rem;
+  }
+
+  .control-left,
+  .control-right {
+    font-size: 20px;
+    padding: 8px;
+  }
+}
+
+/* Prevent global horizontal scrolling */
+body {
+  margin: 0;
+  overflow-x: hidden;
 }

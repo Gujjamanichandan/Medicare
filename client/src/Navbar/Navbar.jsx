@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext'; // Import AuthContext
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext); // Access user data and logout from context
   const [location, setLocation] = useState('Locating...');
   const [dateTime, setDateTime] = useState('');
-  const [dropdownVisible, setDropdownVisible] = useState(false); // Dropdown visibility
-  const navigate = useNavigate(); // Hook to navigate between pages
+  const [menuOpen, setMenuOpen] = useState(false); // State for hamburger menu
 
-  // Function to get location using Nominatim API (OpenStreetMap)
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const getLocationName = (latitude, longitude) => {
     const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`;
 
@@ -19,7 +19,7 @@ const Navbar = () => {
       .then((data) => {
         if (data && data.address) {
           const { city, state, country } = data.address;
-          setLocation(`${city || 'Unknown City'}, ${state || 'Unknown State'}, ${country || 'Unknown Country'}`);
+          setLocation(`${city}, ${state}, ${country}`);
         } else {
           setLocation('Location not found');
         }
@@ -31,13 +31,11 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    // Get current location when the component mounts
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       getLocationName(latitude, longitude);
     });
 
-    // Update date and time every second
     const interval = setInterval(() => {
       const now = new Date();
       const formattedDateTime = now.toLocaleString('en-US', {
@@ -55,18 +53,13 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleLogout = () => {
-    logout(); // Call logout from context to clear user data
-    navigate('/login'); // Redirect to login page after logout
-  };
-
   return (
     <nav>
       <div className="first-section">
         <div className="container">
           <div>
-            <i className="fas fa-map-marker-alt"></i> {/* Location Icon */}
-            <span>{location}</span>
+            <i className="fas fa-map-marker-alt"></i>
+            <span> {location}</span>
           </div>
           <div>{dateTime}</div>
         </div>
@@ -74,7 +67,9 @@ const Navbar = () => {
 
       <div className="second-section">
         <div className="container">
-          <img src="/logo.png" alt="Logo" className="logo" /> {/* Logo Image */}
+          <img src="/logo.png" alt="Logo" className="logo" />
+
+          {/* Inline Menu for Desktop */}
           <div className="menu">
             <Link to="/">Home</Link>
             <Link to="/about">About Us</Link>
@@ -82,28 +77,26 @@ const Navbar = () => {
             <Link to="/contact">Contact Us</Link>
           </div>
 
-          {/* Conditional rendering based on login state */}
-          {user ? (
-            <div
-              className="user-dropdown"
-              onMouseEnter={() => setDropdownVisible(true)} // Show dropdown on hover
-              onMouseLeave={() => setDropdownVisible(false)} // Hide dropdown when hover ends
-            >
-              <button className="welcome-button">
-                Welcome, {user.name || 'Guest'} {/* Fallback for missing name */}
-              </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <Link to="/profile">My Profile</Link> {/* Link to Profile page */}
-                  <span onClick={handleLogout} className="logout-text">Logout</span> {/* Logout as text */}
-                </div>
-              )}
-            </div>
-          ) : (
+          <div className="right-side">
             <Link to="/login">
               <button className="login-button">Login</button>
             </Link>
-          )}
+
+            {/* Hamburger Icon */}
+            <div className="hamburger" onClick={toggleMenu}>
+              <div className={`line ${menuOpen ? 'rotate-top' : ''}`}></div>
+              <div className={`line ${menuOpen ? 'fade-out' : ''}`}></div>
+              <div className={`line ${menuOpen ? 'rotate-bottom' : ''}`}></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Vertical Menu for Tablet and Mobile */}
+        <div className={`menu-mobile ${menuOpen ? 'active' : ''}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
+          <Link to="/doctors" onClick={() => setMenuOpen(false)}>Our Providers</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
         </div>
       </div>
     </nav>

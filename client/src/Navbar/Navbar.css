@@ -1,6 +1,6 @@
 body {
   font-family: "Noto Sans", sans-serif;
-  margin: 0px !important;
+  margin: 0;
 }
 
 .first-section {
@@ -23,6 +23,7 @@ body {
   color: #368387;
   padding: 10px 0;
   border-bottom: 1px solid #558a8d59;
+  position: relative;
 }
 
 .second-section .container {
@@ -34,16 +35,12 @@ body {
   align-items: center;
 }
 
-/* Logo */
 .logo {
-  width: 270px;
-  font-weight: bold;
-  font-size: 24px;
-  color: #368387;
+  width: 150px;
 }
 
 .menu {
-  display: flex;
+  display: flex; /* Inline menu for desktop */
   gap: 20px;
 }
 
@@ -53,7 +50,40 @@ body {
   font-size: 18px;
 }
 
-/* Login Button */
+.menu-mobile {
+  display: none; /* Hidden by default */
+}
+
+.menu-mobile.active {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.menu-mobile a {
+  color: #368387;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-mobile a:hover {
+  background-color: #f0f0f0;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .login-button {
   background-color: #368387;
   color: white;
@@ -61,92 +91,79 @@ body {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-family: "Noto Sans", sans-serif;
   font-size: 18px;
 }
 
+.hamburger {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #368387;
+  transition: all 0.3s ease;
+}
+
+.hamburger .line.rotate-top {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger .line.rotate-bottom {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.hamburger .line.fade-out {
+  opacity: 0;
+}
+
+/* Sticky Navbar */
 nav {
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-a,
-button {
-  text-decoration: none;
-  outline: none;
-  border: none;
+/* Media Queries */
+
+/* For tablets and smaller screens (768px and below) */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* Hide inline menu */
+  }
+
+  .menu-mobile {
+    display: none; /* Hidden by default */
+  }
+
+  .menu-mobile.active {
+    display: flex; /* Show menu when hamburger is clicked */
+  }
+
+  .hamburger {
+    display: flex; /* Show hamburger menu */
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .login-button {
+    padding: 8px 16px;
+  }
 }
 
-/* Welcome Button */
-.welcome-button {
-  background-color: #558a8d; /* Primary color */
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.welcome-button:hover {
-  background-color: #3c6b6b; /* Slightly darker shade on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-/* User Dropdown */
-/* User Dropdown */
-.user-dropdown {
-  position: relative;
-}
-
-.user-dropdown button {
-  background-color: #558a8d;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.user-dropdown button:hover {
-  background-color: #3c6b6b; /* Hover effect */
-  transform: scale(1.05);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  width: 150px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-menu a,
-.dropdown-menu span {
-  color: #558a8d;
-  text-decoration: none;
-  padding: 8px 15px;
-  text-align: left;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-menu a:hover,
-.dropdown-menu span:hover {
-  background-color: #f0f0f0; /* Light background on hover */
-}
-
-.logout-text {
-  font-size: 14px;
-  text-align: center;
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

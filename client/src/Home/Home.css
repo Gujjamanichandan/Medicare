@@ -1,70 +1,144 @@
 .home {
   font-family: "Noto Sans", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* First Section */
-
 #home-bg {
   margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 40px 20px;
   background-image: url("/public/bg-fsec.png");
-  background-size: 300px;
-  background-position: right top;
+  background-size: contain; /* Makes the image responsive */
+  background-position: center;
   background-repeat: no-repeat;
-}
-.homepage-first-section {
-  align-items: left;
-  padding: 0 20px;
-  color: #558a8d;
+  text-align: center;
 }
 
-.doctor-card img {
-  border-radius: 0px;
+.homepage-first-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: #558a8d;
 }
 
 .title {
-  font-size: 75px;
+  font-size: 4rem;
   color: #558a8d;
   letter-spacing: 4px;
   text-transform: uppercase;
+  margin: 0;
 }
 
 /* Second Section */
 .homepage-second-section {
-  padding: 0px 0px;
+  padding: 20px;
   background-color: #ffffff;
-  text-align: left;
+  text-align: center;
   color: #368387;
 }
 
 .two-columns {
   display: flex;
+  flex-wrap: wrap; /* Ensures flexibility for smaller screens */
+  gap: 20px;
+  justify-content: center;
 }
 
-/* Column Styles */
 .column {
-  flex: 1;
-  padding: 0 20px;
-  width: 50%;
+  flex: 1 1 45%; /* Flexible width for columns */
+  max-width: 500px;
+  padding: 10px;
+  text-align: center;
 }
 
 #home-text {
-  margin-top: -70px;
+  margin-top: 0;
 }
 
 #home-text2 {
-  margin-top: -95px;
+  margin-top: 10px;
+  font-size: 3.5rem;
 }
 
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Third Section */
+.homepage-third-section {
+  padding: 20px;
 }
 
 .team-image {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 80px 10px;
+  border-radius: 15px;
+}
+
+/* Media Queries */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  #home-bg {
+    padding: 20px;
+    background-size: cover;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .two-columns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .column {
+    max-width: 100%;
+  }
+
+  #home-text2 {
+    font-size: 2.8rem;
+  }
+
+  .team-image {
+    border-radius: 10px;
+  }
+}
+
+/* For phones (480px and below) */
+@media (max-width: 480px) {
+  #home-bg {
+    padding: 20px;
+    background-size: cover;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .two-columns {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .column {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  #home-text2 {
+    font-size: 2rem;
+  }
+
+  .team-image {
+    border-radius: 5px;
+  }
 }
