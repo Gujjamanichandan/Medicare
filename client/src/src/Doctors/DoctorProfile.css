@@ -1,0 +1,359 @@
+/* Container styling */
+.doctor-profile-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Left column for doctor image and info */
+.doctor-left-column {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.doctor-info {
+  text-align: center;
+  color: #558a8d;
+}
+
+.doctor-info h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #558a8d;
+}
+
+.doctor-info p {
+  font-size: 16px;
+  color: #558a8d;
+}
+
+/* Right column for the form */
+.doctor-right-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-right-column h1 {
+  font-size: 28px;
+  color: #558a8d;
+  margin-bottom: 10px;
+}
+
+.doctor-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #558a8d;
+  margin-bottom: 0px;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #558a8d;
+}
+
+form label {
+  margin: 0px 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #558a8d;
+}
+
+form select,
+form textarea,
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+form textarea {
+  min-height: 100px;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  background-color: #558a8d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+button[type="submit"]:hover {
+  background-color: #466f71;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  .doctor-profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .doctor-left-column {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .doctor-right-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* Customize the date picker container */
+.react-datepicker {
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize the header (month, year) */
+.react-datepicker__header {
+  text-align: center;
+  color: white;
+  background-color: #558a8d; /* Apply your preferred color */
+  border-bottom: 1px solid #aeaeae;
+  border-top-left-radius: 0.3rem;
+  padding: 8px 0;
+  position: relative;
+}
+
+/* Current month title */
+h2.react-datepicker__current-month {
+  color: white; /* White text for the current month */
+}
+
+/* Day names (Mon, Tue, etc.) */
+.react-datepicker__day-name {
+  color: white; /* White color for the day names */
+  width: 3.4rem !important;
+}
+
+/* Customize the day cells */
+.react-datepicker__day {
+  color: #558a8d;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 0;
+  transition: background-color 0.3s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: #558a8d; /* Change to the desired hover color */
+  color: white; /* Change text color to white on hover */
+}
+
+.react-datepicker__day--selected {
+  background-color: #558a8d !important; /* Background color for selected day */
+  color: white; /* Change text color for selected day */
+}
+
+/* Style for available days */
+/* .react-datepicker__day--highlighted {
+  background-color: #7fa7aa54; 
+  color: #558a8d;
+} */
+
+/* Disable backdated or unavailable days */
+.react-datepicker__day--disabled {
+  color: #ccc; /* Dimmed unavailable days */
+  pointer-events: none;
+}
+
+/* Time selection hover and selected styles */
+.available-times {
+  margin-left: 20px; /* Space between the calendar and times */
+  padding: 10px;
+  height: 335px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  flex: 1; /* Make the available times section fill the remaining space */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+.available-times li {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.available-times li:hover {
+  background-color: #558a8d; /* Change background on hover */
+  color: white; /* Change text color on hover */
+}
+
+/* Selected time styles */
+.available-times li.selected {
+  background-color: #558a8d; /* Background color for selected time */
+  color: white; /* Text color for selected time */
+}
+
+/* Date picker container for flex alignment */
+.datepicker-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px; /* Spacing below the datepicker */
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+  background-color: transparent !important;
+}
+
+.react-datepicker__day:not([aria-disabled="true"]):hover,
+.react-datepicker__month-text:not([aria-disabled="true"]):hover,
+.react-datepicker__quarter-text:not([aria-disabled="true"]):hover,
+.react-datepicker__year-text:not([aria-disabled="true"]):hover {
+  border-radius: 0.3rem;
+  background-color: #558a8d;
+}
+
+.react-datepicker__day--highlighted,
+.react-datepicker__month-text--highlighted,
+.react-datepicker__quarter-text--highlighted,
+.react-datepicker__year-text--highlighted {
+  background-color: transparent;
+}
+
+.react-datepicker__navigation {
+  align-items: center;
+  background: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  padding: 0;
+  border: none;
+  z-index: 1;
+  height: 34px;
+  width: 240px;
+  text-indent: -999em;
+  overflow: hidden;
+}
+
+/* ... existing styles ... */
+
+/* Patient details styling */
+.patient-details {
+  margin-top: 0px; /* Space above the patient details */
+}
+
+.patient-contact {
+  display: flex;
+  justify-content: space-between; /* Space between email and phone */
+  margin-bottom: 15px; /* Space below contact fields */
+}
+
+.contact-field {
+  flex: 1; /* Make fields fill the space */
+  margin-right: 10px; /* Add space between fields */
+}
+
+.contact-field:last-child {
+  margin-right: 0; /* Remove margin from last field */
+}
+
+.patient-info {
+  display: flex;
+  justify-content: space-between; /* Space between DOB and gender */
+  margin-bottom: 15px; /* Space below info fields */
+}
+
+.info-field {
+  flex: 1; /* Make fields fill the space */
+  margin-right: 10px; /* Add space between fields */
+}
+
+.info-field:last-child {
+  margin-right: 0; /* Remove margin from last field */
+}
+input {
+  height: 18px;
+  color: #558a8d;
+}
+
+form select,
+form textarea,
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  width: 97%;
+}
+#email {
+  width: 95%;
+}
+#phone {
+  width: 95%;
+}
+#dob {
+  width: 95%;
+}
+#gender {
+  width: 100%;
+  color: #558a8d;
+}
+
+option {
+  color: #558a8d;
+}
+
+.validation-error {
+  color: red;
+  font-size: 14px;
+}

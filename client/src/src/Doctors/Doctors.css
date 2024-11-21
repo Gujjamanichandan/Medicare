@@ -1,0 +1,135 @@
+.doctors-page {
+  display: flex;
+  margin: 20px;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.specialization-filter {
+  margin-bottom: 20px;
+}
+
+.specialization-filter select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.doctors-list {
+  flex: 3;
+  padding: 10px;
+}
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px;
+}
+
+.doctor-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-card h3,
+p {
+  margin: 0px 0px 0px 0px;
+  color: rgb(54, 131, 135);
+}
+
+.doctor-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.book-appointment-btn {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px !important;
+  margin-top: 15px !important;
+}
+
+.book-appointment-btn:hover {
+  background-color: #155a8a;
+}
+
+.left-sidebar {
+  background-color: #f9f9f9; /* Light background for the sidebar */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+  margin-right: 20px; /* Space between the sidebar and the doctor list */
+}
+
+.filter-title {
+  color: #558a8d; /* Title color matching the site color */
+  margin-bottom: 15px;
+  font-size: 20px; /* Title font size */
+}
+
+.left-sidebar label {
+  display: block; /* Make labels block to stack elements */
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #558a8d; /* Matching label color */
+}
+
+.left-sidebar input,
+.left-sidebar select {
+  padding: 10px;
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 5px; /* Rounded corners */
+  width: 100%; /* Full width */
+  margin-bottom: 15px; /* Space between inputs */
+  font-size: 16px; /* Font size for inputs */
+}
+
+.left-sidebar input:focus,
+.left-sidebar select:focus {
+  border-color: #558a8d; /* Border color on focus */
+}
+
+.login-button-2 {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+}
+#search {
+  width: 93%;
+}

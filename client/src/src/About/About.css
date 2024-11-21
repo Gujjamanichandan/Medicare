@@ -1,0 +1,250 @@
+body {
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.6;
+    color: #558a8d; 
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#firsthead{
+    margin-left: 35%;
+    font-size: 30px;
+}
+.stay-healthy-section h2{
+    font-size: 60px;
+}
+
+section {
+    padding: 80px 0;
+    margin-bottom: 40px;
+    animation: zoomOut 1.5s forwards; 
+}
+
+@keyframes zoomOut {
+    from {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+
+.about-hero {
+    background-color: #e9f5ec;
+    padding: 50px 0;
+}
+
+.about-hero h1 {
+    font-size: 36px;
+    color: #368387; 
+    font-weight: bold;
+}
+
+.about-hero p {
+    color: #6b757d;
+}
+
+.stay-healthy-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.stay-healthy-section h2 {
+    color: #368387; 
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.stay-healthy-section p {
+    margin-bottom: 20px;
+}
+
+.stay-healthy-img {
+    width: 100%;
+    border-radius: 20px; 
+    margin-top: 20px;
+    transition: transform 0.3s ease; 
+}
+
+.stay-healthy-img:hover {
+    transform: scale(1.1);
+}
+
+.mission-section {
+    background-color: #e9f5ec;
+    padding: 60px 0;
+}
+
+.mission-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+}
+
+.mission-text {
+    flex: 1;
+}
+
+.mission-text h2 {
+    color: #368387; 
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.mission-text ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.mission-text li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left; 
+}
+
+.mission-img img{
+    flex: 1;
+    transition: transform 0.3s ease; 
+}
+
+.mission-img img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.mission-img img:hover {
+    transform: scale(1.1); 
+}
+
+.apart-section {
+    padding: 60px 0;
+}
+
+.apart-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+}
+
+.apart-img img{
+    flex: 1;
+    transition: transform 0.3s ease; 
+}
+
+.apart-img img {
+    width: 100%;
+    border-radius: 20px; 
+}
+
+.apart-img img:hover {
+    transform: scale(1.1); 
+}
+
+.apart-text {
+    flex: 1;
+    text-align: left;
+}
+
+.apart-text h2 {
+    color: #368387; 
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.doctors-section {
+    background-color: #f0efef;
+    padding: 60px 0;
+}
+
+.doctors-section h2{
+    font-size: 36px;
+    color: #368387;
+    margin-bottom: 10px;
+}
+
+.doctors {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; 
+}
+
+.doctor {
+    width: 23%;
+    text-align: center;
+    margin-bottom: 0px;
+    background-color: #fff; 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease; 
+}
+
+.doctor:hover {
+    transform: scale(1.05); 
+}
+
+.doctor img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.book-btn {
+    margin-top: 10px;
+    background-color: #2b4a52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.appointment-banner {
+    background-color: #e9f5ec;
+    padding: 60px 0;
+    border-radius: 20px;
+}
+
+.appointment-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+}
+
+.appointment-text {
+    flex: 1;
+    text-align: left;
+}
+
+.appointment-text h2{
+    color: #368387;
+}
+
+.appointment-img img{
+    flex: 1;
+    transition: transform 0.3s ease; 
+}
+
+.appointment-img img {
+    width: 100%;
+    border-radius: 20px; 
+}
+
+.appointment-img img:hover {
+    transform: scale(1.1); 
+}
+
+.appointment-btn {
+    background-color: #2b4a52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

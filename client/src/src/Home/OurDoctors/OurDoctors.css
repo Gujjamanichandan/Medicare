@@ -1,0 +1,107 @@
+.our-doctors-section {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.our-doctors-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.right-column {
+  flex: 1 1;
+  display: flex;
+  justify-content: right !important;
+  align-items: center;
+}
+
+.small-text {
+  color: rgb(54, 131, 135);
+  background-color: rgba(67, 186, 127, 0.1);
+  border-radius: 18.5px;
+  padding: 4px 16px;
+  font-size: 18px;
+  line-height: 1.76;
+  display: inline-block;
+}
+
+.main-title {
+  font-size: 35px;
+  color: rgb(54, 131, 135);
+  line-height: 1.2;
+}
+
+.view-all-doctors-btn {
+  background-color: #368387;
+  color: white;
+  padding: 8px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-doctors-btn:hover {
+  background-color: #558a8d;
+}
+
+/* Doctors Grid Section */
+.doctors-grid-home {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.doctor-card {
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.doctor-card:hover {
+  transform: scale(1.05);
+}
+
+.doctor-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.doctor-specialization {
+  color: #558a8d;
+  background-color: #ecf8f2;
+  border-radius: 18.5px;
+  padding: 4px 25px;
+  font-size: 14px;
+  line-height: 1.76;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.doctor-card:hover .doctor-specialization {
+  background-color: #558a8d;
+  color: white;
+}
+
+.doctor-name {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  color: #558a8d;
+}
+
+.doctor-qualifications {
+  font-size: 14px;
+  color: #558a8d;
+  margin-bottom: 30px;
+}
