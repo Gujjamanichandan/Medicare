@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import About from './About/About';
 import Contact from './Contact/Contact';
+import AuthContext from './context/AuthContext'; // AuthContext for managing login state
+import DoctorDashboard from './DoctorDashboard/DoctorDashboard'; // Doctor Dashboard
 import DoctorProfile from './Doctors/DoctorProfile';
 import Doctors from './Doctors/Doctors';
 import Footer from './Footer/Footer';
@@ -10,10 +12,9 @@ import Login from './Login/Login';
 import Signup from './Login/Signup';
 import MyProfile from './MyProfile/MyProfile'; // Profile Page
 import Navbar from './Navbar/Navbar';
-import AuthContext from './context/AuthContext'; // AuthContext for managing login state
 
 function App() {
-  const { user } = useContext(AuthContext);  // Get the user from AuthContext
+  const { user } = useContext(AuthContext); // Get the user from AuthContext
 
   return (
     <Router>
@@ -27,11 +28,21 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
-          
-          {/* Protect the profile page with a check for logged-in status */}
+
+          {/* Protect the profile page for logged-in patients */}
           <Route
             path="/profile"
-            element={user ? <MyProfile /> : <Login />}  // If the user is logged in, show the profile page; otherwise redirect to login
+            element={
+              user && user.role === 'Patient' ? <MyProfile /> : <Login />
+            }
+          />
+
+          {/* Protect the doctor dashboard for logged-in doctors */}
+          <Route
+            path="/doctor-dashboard"
+            element={
+              user && user.role === 'Doctor' ? <DoctorDashboard /> : <Login />
+            }
           />
         </Routes>
         <Footer />

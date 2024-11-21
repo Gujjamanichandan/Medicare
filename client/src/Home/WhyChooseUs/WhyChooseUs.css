@@ -1,21 +1,18 @@
 .why-choose-us-section {
-  max-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
-  padding: 20px 20px 80px;
+  padding: 20px 0px 80px;
   display: flex;
-  flex-wrap: wrap; /* Enable wrapping for smaller screens */
   justify-content: space-between;
-  gap: 20px; /* Add spacing between columns */
 }
 
 /* Left Column */
 .left-column-last {
   background-color: #ecf8f2;
-  padding: 40px;
+  padding: 60px;
   border-radius: 10px;
-  flex: 1 1 45%; /* Flexible width for responsiveness */
+  flex: 0.6 1;
   margin-right: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .small-text {
@@ -29,11 +26,13 @@
 }
 
 .main-title {
-  font-size: 2rem;
-  line-height: 1.3;
+  font-size: 30px;
+  line-height: 1.2;
   margin: 20px 0;
+  text-align: left;
 }
 
+/* List Style */
 .why-choose-us-list {
   list-style: none;
   padding-left: 0;
@@ -43,7 +42,7 @@
 .list-item {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 18px;
   margin: 10px 0;
 }
 
@@ -57,12 +56,12 @@
 .book-appointment-btn {
   background-color: #368387;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 26px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   font-family: "Noto Sans", sans-serif;
-  font-size: 16px;
+  font-size: 30px;
   margin-top: 25px;
   transition: background-color 0.3s ease;
 }
@@ -73,71 +72,70 @@
 
 /* Right Column */
 .right-column {
-  flex: 1 1 45%; /* Flexible width for responsiveness */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.video-container {
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: #368387;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+  background-color: #558a8d;
+}
+
+/* Right Column with Background Video */
+.right-column {
+  width: 50%;
   position: relative;
   overflow: hidden;
 }
 
-.right-column video {
+/* Background video */
+.right-column::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  background: url(./video3.mp4) no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.right-column video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Media Queries */
-
-/* For tablets (768px and below) */
-@media (max-width: 768px) {
-  .why-choose-us-section {
-    flex-direction: column; /* Stack columns */
-    align-items: center;
-  }
-
-  .left-column-last,
-  .right-column {
-    flex: 1 1 100%; /* Full width for both columns */
-    margin-right: 0;
-    margin-bottom: 20px; /* Add space between columns */
-  }
-
-  .main-title {
-    font-size: 1.8rem;
-  }
-
-  .list-item {
-    font-size: 0.9rem;
-  }
-
-  .book-appointment-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
-
-/* For phones (480px and below) */
-@media (max-width: 480px) {
-  .left-column-last {
-    padding: 20px;
-  }
-
-  .main-title {
-    font-size: 1.5rem;
-  }
-
-  .list-item {
-    font-size: 0.85rem;
-  }
-
-  .book-appointment-btn {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  .right-column video {
-    border-radius: 5px;
-  }
+  z-index: -1;
 }
