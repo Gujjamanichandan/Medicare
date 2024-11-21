@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
 
 
@@ -84,53 +84,112 @@ const Contact = () => {
           <h2 className="section-title">Contact Us for Personalized Assistance and Quick Resolutions.</h2>
         </div>
         <div className="contact-form-wrapper">
-          <form id="contactForm" className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-input-grid">
-              <input
-                type="text"
-                className="contact-input"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                required
-              />
-              <input
-                type="email"
-                className="contact-input"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                required
-              />
-              <input
-                type="tel"
-                className="contact-input"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Your phone number"
-                required
-              />
-              <input
-                type="text"
-                className="contact-input"
-                name="subject"
-                placeholder="Write your Subject"
-                required
-              />
-            </div>
-            <textarea
-              className="contact-textarea"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Write your message..."
-              required
-            ></textarea>
-            <button type="submit" className="contact-submit-button">Send Message</button>
-          </form>
+        <form id="contactForm" className="contact-form" onSubmit={handleSubmit}>
+  <div className="contact-input-grid">
+    {/* Name Validation */}
+    <input
+      type="text"
+      className="contact-input"
+      name="name"
+      value={formData.name}
+      onChange={(e) => {
+        const value = e.target.value;
+        if (/^[a-zA-Z\s]*$/.test(value)) { // Allow only letters and spaces
+          handleChange(e);
+        }
+      }}
+      placeholder="Your name"
+      required
+    />
+    {formData.name && formData.name.length < 3 && (
+      <span className="validation-error">Name must be at least 3 characters.</span>
+    )}
+
+    {/* Email Validation */}
+    <input
+      type="email"
+      className="contact-input"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder="Enter your email"
+      required
+    />
+    {!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && formData.email.length > 0 && (
+      <span className="validation-error">Please enter a valid email address.</span>
+    )}
+
+    {/* Phone Number Validation */}
+    <input
+      type="tel"
+      className="contact-input"
+      name="phone"
+      value={formData.phone}
+      onChange={(e) => {
+        const value = e.target.value;
+        if (/^\d{0,10}$/.test(value)) { // Allow only numeric values up to 10 digits
+          handleChange(e);
+        }
+      }}
+      placeholder="Your phone number"
+      required
+    />
+    {formData.phone && formData.phone.length !== 10 && (
+      <span className="validation-error">Phone number must be 10 digits.</span>
+    )}
+
+    {/* Subject Validation */}
+    <input
+      type="text"
+      className="contact-input"
+      name="subject"
+      value={formData.subject}
+      onChange={(e) => {
+        const value = e.target.value;
+        if (/^[a-zA-Z0-9\s.,!?]*$/.test(value)) { // Allow letters, numbers, and basic punctuation
+          handleChange(e);
+        }
+      }}
+      placeholder="Write your Subject"
+      required
+    />
+    {formData.subject && formData.subject.length < 5 && (
+      <span className="validation-error">Subject must be at least 5 characters.</span>
+    )}
+  </div>
+
+  {/* Message Validation */}
+  <textarea
+    className="contact-textarea"
+    name="message"
+    value={formData.message}
+    onChange={(e) => {
+      const value = e.target.value;
+      if (value.length <= 500) { // Limit to 500 characters
+        handleChange(e);
+      }
+    }}
+    placeholder="Write your message..."
+    required
+  ></textarea>
+  {formData.message && formData.message.length < 10 && (
+    <span className="validation-error">Message must be at least 10 characters.</span>
+  )}
+  {formData.message && formData.message.length > 500 && (
+    <span className="validation-error">Message cannot exceed 500 characters.</span>
+  )}
+
+  <button type="submit" className="contact-submit-button" disabled={
+    !formData.name || formData.name.length < 3 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ||
+    !formData.phone || formData.phone.length !== 10 ||
+    !formData.subject || formData.subject.length < 5 ||
+    !formData.message || formData.message.length < 10 || formData.message.length > 500
+  }>
+    Send Message
+  </button>
+</form>
+
         </div>
       </div>
     </div>

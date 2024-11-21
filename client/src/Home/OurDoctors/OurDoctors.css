@@ -1,25 +1,21 @@
 .our-doctors-section {
-  max-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px; /* Adjust padding for smaller screens */
+  padding: 40px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-/* Header Section */
 .our-doctors-header {
   display: flex;
-  flex-wrap: wrap; /* Enable wrapping for smaller screens */
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-  gap: 20px; /* Add space between columns for smaller screens */
 }
-
 .right-column {
-  flex: 1 1 auto;
+  flex: 1 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: right !important;
   align-items: center;
 }
 
@@ -34,7 +30,7 @@
 }
 
 .main-title {
-  font-size: 2rem;
+  font-size: 35px;
   color: rgb(54, 131, 135);
   line-height: 1.2;
 }
@@ -42,13 +38,13 @@
 .view-all-doctors-btn {
   background-color: #368387;
   color: white;
-  padding: 8px 20px;
+  padding: 8px 26px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   font-family: "Noto Sans", sans-serif;
-  font-size: 16px;
-  margin-top: 10px;
+  font-size: 18px;
+  margin-top: 25px;
   transition: background-color 0.3s ease;
 }
 
@@ -59,8 +55,8 @@
 /* Doctors Grid Section */
 .doctors-grid-home {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */
-  gap: 20px; /* Space between cards */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .doctor-card {
@@ -108,73 +104,4 @@
   font-size: 14px;
   color: #558a8d;
   margin-bottom: 30px;
-}
-
-/* Media Queries */
-
-/* For tablets (768px and below) */
-@media (max-width: 768px) {
-  .our-doctors-header {
-    flex-direction: column; /* Stack header elements */
-    align-items: center;
-    text-align: center;
-  }
-
-  .doctors-grid-home {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-    gap: 15px;
-  }
-
-  .main-title {
-    font-size: 1.8rem;
-  }
-
-  .view-all-doctors-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .doctor-name {
-    font-size: 16px;
-  }
-
-  .doctor-qualifications {
-    font-size: 12px;
-  }
-}
-
-/* For phones (480px and below) */
-@media (max-width: 480px) {
-  .our-doctors-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-  }
-
-  .doctors-grid-home {
-    grid-template-columns: 1fr; /* 1 card per row */
-  }
-
-  .main-title {
-    font-size: 1.5rem;
-  }
-
-  .small-text {
-    font-size: 14px;
-    padding: 3px 12px;
-  }
-
-  .view-all-doctors-btn {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  .doctor-name {
-    font-size: 14px;
-  }
-
-  .doctor-qualifications {
-    font-size: 10px;
-  }
 }

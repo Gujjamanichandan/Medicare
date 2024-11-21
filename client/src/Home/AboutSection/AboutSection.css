@@ -1,16 +1,14 @@
 .about-section-container {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px; /* Added padding for smaller screens */
-  gap: 20px; /* Added gap for spacing between columns */
+  padding: 80px 0px 60px 0px;
 }
 
 .about-left-column {
-  flex: 1 1 45%; /* Adjusts size dynamically for responsiveness */
+  flex: 1;
   margin-right: 20px;
 }
 
@@ -20,8 +18,7 @@
 }
 
 .about-right-column {
-  flex: 1 1 45%; /* Adjusts size dynamically for responsiveness */
-  text-align: center; /* Center image for smaller screens */
+  flex: 1;
 }
 
 .about-label {
@@ -35,13 +32,15 @@
 }
 
 .about-title {
-  font-size: 2rem;
+  font-size: 35px;
+  line-height: 1.2;
   margin: 10px 0;
   color: #368387;
+  text-align: left;
 }
 
 .about-image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -55,7 +54,6 @@
   font-family: "Noto Sans", sans-serif;
   font-size: 18px;
   margin-top: 25px;
-  display: inline-block;
 }
 
 .learn-more-button:hover {
@@ -65,16 +63,16 @@
 /* Styles for the info grid */
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Default for larger screens */
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px; /* Space between boxes */
   margin: 20px 0;
-  width: 100%; /* Full width for responsiveness */
+  width: 80%;
 }
 
 .info-box {
   background-color: rgba(67, 186, 127, 0.1);
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the box */
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -93,59 +91,4 @@
 .info-box p {
   margin: 5px 0 0;
   font-size: 16px;
-}
-
-/* Media Queries */
-
-/* For tablets (768px and below) */
-@media (max-width: 768px) {
-  .about-section-container {
-    flex-direction: column; /* Stack columns vertically */
-    text-align: center; /* Center align text and content */
-  }
-
-  .about-left-column,
-  .about-right-column {
-    flex: 1 1 100%; /* Full width */
-    margin-right: 0;
-  }
-
-  .about-title {
-    font-size: 1.8rem;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr; /* Single column grid */
-    gap: 15px;
-  }
-
-  .learn-more-button {
-    font-size: 16px;
-    padding: 8px 20px;
-  }
-}
-
-/* For phones (480px and below) */
-@media (max-width: 480px) {
-  .about-title {
-    font-size: 1.5rem;
-  }
-
-  .info-box h3 {
-    font-size: 20px;
-  }
-
-  .info-box p {
-    font-size: 14px;
-  }
-
-  .learn-more-button {
-    font-size: 14px;
-    padding: 6px 16px;
-  }
-
-  .about-label {
-    font-size: 16px;
-    padding: 4px 12px;
-  }
 }
