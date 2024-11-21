@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1200px; 
-  margin: 0 auto; 
-  padding: 80px 0px 60px 0px; 
+  width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0px 60px 0px;
 }
 
 .about-left-column {
-  flex: 1; 
+  flex: 1;
   margin-right: 20px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .about-right-column {
-  flex: 1; 
+  flex: 1;
 }
 
 .about-label {
@@ -32,14 +32,16 @@
 }
 
 .about-title {
-  font-size: 30px;
-  margin: 10px 0; 
+  font-size: 35px;
+  line-height: 1.2;
+  margin: 10px 0;
   color: #368387;
+  text-align: left;
 }
 
 .about-image {
-  width: 100%; 
-  height: auto; 
+  width: 100%;
+  height: auto;
 }
 
 .learn-more-button {
@@ -55,38 +57,38 @@
 }
 
 .learn-more-button:hover {
-  background-color: #558a8d; 
+  background-color: #558a8d;
 }
 
 /* Styles for the info grid */
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px; /* Space between boxes */
-  margin: 20px 0; 
+  margin: 20px 0;
   width: 80%;
 }
 
 .info-box {
-  background-color: rgba(67, 186, 127, 0.1); 
+  background-color: rgba(67, 186, 127, 0.1);
   border-radius: 10px; /* Rounded corners */
   padding: 20px; /* Padding inside the box */
-  text-align: center; 
+  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .info-box h3 {
   color: #368387;
   font-size: 24px;
-  margin: 0; 
-  transition: transform 0.2s ease; 
+  margin: 0;
+  transition: transform 0.2s ease;
 }
 
 .info-box h3:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .info-box p {
-  margin: 5px 0 0; 
-  font-size: 16px; 
+  margin: 5px 0 0;
+  font-size: 16px;
 }
