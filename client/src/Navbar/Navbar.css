@@ -54,13 +54,16 @@ body {
 }
 
 /* Login Button */
-.login-button {
+.login-button,
+.logout-button {
   background-color: #368387;
   color: white;
   padding: 8px 26px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin-top: -6px;
+
   font-family: "Noto Sans", sans-serif;
   font-size: 18px;
 }
@@ -107,6 +110,7 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 25px;
+  margin-top: -5px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -121,6 +125,7 @@ button {
   position: absolute;
   top: 40px;
   right: 0;
+  margin-top: -5px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -149,4 +154,60 @@ button {
 .logout-text {
   font-size: 14px;
   text-align: center;
+}
+.hamburger {
+  display: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #368387;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .second-section .container {
+    align-items: flex-start;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .first-section {
+    font-size: 14px;
+  }
+  .menu.show {
+    display: flex; /* Show menu when toggled */
+  }
+
+  .menu a {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .hamburger {
+    display: block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #368387;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .login-button,
+  .logout-button {
+    font-size: 14px;
+    padding: 6px 15px;
+  }
 }

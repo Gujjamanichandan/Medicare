@@ -8,6 +8,7 @@ const Navbar = () => {
   const [location, setLocation] = useState('Locating...');
   const [dateTime, setDateTime] = useState('');
   const [dropdownVisible, setDropdownVisible] = useState(false); // Dropdown visibility
+  const [menuVisible, setMenuVisible] = useState(false); // For mobile menu toggle
   const navigate = useNavigate(); // Hook to navigate between pages
 
   // Function to get location using Nominatim API (OpenStreetMap)
@@ -75,35 +76,48 @@ const Navbar = () => {
       <div className="second-section">
         <div className="container">
           <img src="/logo.png" alt="Logo" className="logo" /> {/* Logo Image */}
-          <div className="menu">
-            <Link to="/">Home</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/doctors">Our Providers</Link>
-            <Link to="/contact">Contact Us</Link>
-          </div>
-
-          {/* Conditional rendering based on login state */}
-          {user ? (
-            <div
-              className="user-dropdown"
-              onMouseEnter={() => setDropdownVisible(true)} // Show dropdown on hover
-              onMouseLeave={() => setDropdownVisible(false)} // Hide dropdown when hover ends
-            >
-              <button className="welcome-button">
-                Welcome, {user.name || 'Guest'} {/* Fallback for missing name */}
+          
+          {/* Hamburger Menu Button */}
+          <button className="hamburger" onClick={() => setMenuVisible(!menuVisible)}>
+            &#9776;
+          </button>
+          
+          <div className={`menu ${menuVisible ? 'show' : ''}`}>
+            {/* Conditional rendering for doctors */}
+            {user?.role === 'Doctor' ? (
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
               </button>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <Link to="/profile">My Profile</Link> {/* Link to Profile page */}
-                  <span onClick={handleLogout} className="logout-text">Logout</span> {/* Logout as text */}
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link to="/login">
-              <button className="login-button">Login</button>
-            </Link>
-          )}
+            ) : (
+              <>
+                <Link to="/">Home</Link>
+                <Link to="/about">About Us</Link>
+                <Link to="/doctors">Our Providers</Link>
+                <Link to="/contact">Contact Us</Link>
+                {user ? (
+                  <div
+                    className="user-dropdown"
+                    onMouseEnter={() => setDropdownVisible(true)} // Show dropdown on hover
+                    onMouseLeave={() => setDropdownVisible(false)} // Hide dropdown when hover ends
+                  >
+                    <button className="welcome-button">
+                      Welcome, {user.name} {/* Display user's name */}
+                    </button>
+                    {dropdownVisible && (
+                      <div className="dropdown-menu">
+                        <Link to="/profile">My Profile</Link> {/* Link to Profile page */}
+                        <span onClick={handleLogout} className="logout-text">Logout</span> {/* Logout as text */}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link to="/login">
+                    <button className="login-button">Login</button>
+                  </Link>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>

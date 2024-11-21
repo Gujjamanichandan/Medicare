@@ -36,6 +36,16 @@ const Home = () => {
           />
         </div>
       </div>
+      <div className='mobile-home'>
+
+      <div className="content-container-mobile">
+          <h1 className="title-mobile">Caring for Your WELL-BEING</h1>
+        </div>
+        <div className="column-mobile">
+              <p id='home-text-mobile'>We are dedicated to providing the highest quality of care to our patients. Our compassionate staff is here to support your health and wellness journey.</p>
+            </div>
+      </div>
+
 
 {/* Our Doctors */}
   

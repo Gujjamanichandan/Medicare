@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import './ServiceAndCarousel.css'; 
+import './ServiceAndCarousel.css';
 
 const services = [
   {
-    image: 'images/cardiology.png', 
+    image: 'images/cardiology.png',
     title: 'Cardiology',
     description: 'Our board-certified cardiologists treat and prevent cardiovascular problems with a focus on heart health.',
   },
   {
-    image: 'images/oncology.png', 
+    image: 'images/oncology.png',
     title: 'Oncology',
     description: 'Cancer treatments provided by our oncologists are personalized and provided with unwavering support.',
   },
   {
-    image: 'images/neurology.png', 
+    image: 'images/neurology.png',
     title: 'Neurology',
     description: 'Specialized care for brain and nerve disorders, ensuring expert diagnosis and compassionate treatment.',
   },
@@ -24,7 +24,7 @@ const services = [
     description: 'In order to keep your vision healthy, our ophthalmologists provide eye exams and surgeries.',
   },
   {
-    image: 'images/pediatrics.png', 
+    image: 'images/pediatrics.png',
     title: 'Pediatrics',
     description: 'Complete care for children, from check-ups to treatments, delivered with compassion and expertise.',
   },
@@ -32,13 +32,28 @@ const services = [
 
 const ServiceAndCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false); 
-  const sectionRef = useRef(null); 
+  const [visibleItems, setVisibleItems] = useState(3); // Default to 3 items for desktop
+  const sectionRef = useRef(null);
 
-  const totalItems = services.length;
+  useEffect(() => {
+    const updateVisibleItems = () => {
+      if (window.innerWidth <= 768) {
+        setVisibleItems(1); // Show 1 item for mobile
+      } else {
+        setVisibleItems(3); // Show 3 items for desktop
+      }
+    };
+
+    window.addEventListener('resize', updateVisibleItems);
+    updateVisibleItems(); // Set initial value
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleItems);
+    };
+  }, []);
 
   const handleNext = () => {
-    if (currentIndex < totalItems - 3) {
+    if (currentIndex < services.length - visibleItems) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     }
   };
@@ -49,33 +64,8 @@ const ServiceAndCarousel = () => {
     }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false); 
-          }
-        });
-      },
-      { threshold: 0.1 } 
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <div className={`service-carousel-container ${isVisible ? 'zoom-in' : ''}`} ref={sectionRef}>
+    <div className="service-carousel-container" ref={sectionRef}>
       <div className="service-section">
         <div className="content-container">
           <span className="service-label">Services</span>
@@ -88,7 +78,7 @@ const ServiceAndCarousel = () => {
         <div
           className="carousel-inner"
           style={{
-            transform: `translateX(-${currentIndex * 33.33}%)`,
+            transform: `translateX(-${(currentIndex * 100) / visibleItems}%)`,
           }}
         >
           {services.map((service, index) => (
@@ -111,7 +101,9 @@ const ServiceAndCarousel = () => {
             onClick={handlePrev}
           />
           <FaChevronRight
-            className={`control-right ${currentIndex === totalItems - 3 ? 'disabled' : ''}`}
+            className={`control-right ${
+              currentIndex === services.length - visibleItems ? 'disabled' : ''
+            }`}
             onClick={handleNext}
           />
         </div>

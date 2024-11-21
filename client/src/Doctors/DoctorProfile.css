@@ -353,8 +353,7 @@ option {
   color: #558a8d;
 }
 
-.error {
+.validation-error {
   color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 14px;
 }
