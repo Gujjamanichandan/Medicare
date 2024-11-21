@@ -1,0 +1,135 @@
+.service-carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px;
+  background-color: #ecf8f2;
+  border-radius: 10px;
+  transition: transform 0.8s ease-in-out;
+}
+
+.service-carousel-container.zoom-in {
+  transform: scale(1.06); 
+}
+
+/* Service section */
+.service-section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-label {
+  background-color: rgba(67, 186, 127, 0.1);
+  border-radius: 18.5px;
+  padding: 4px 16px;
+  font-size: 18px;
+  line-height: 1.76;
+  display: inline-block;
+  color: #368387;
+}
+
+.service-title {
+  font-size: 22px !important;
+  margin-top: 10px;
+  color: #368387;
+}
+
+/* Carousel section */
+.service-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 15px;
+}
+
+.carousel-item {
+  flex: 0 0 32.33%;
+  display: flex;
+  justify-content: center;
+}
+
+.service-card {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid rgba(85, 138, 141, 0.3); /* Light border */
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(85, 138, 141, 0); 
+}
+
+.image-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(67, 186, 127, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 15px;
+}
+
+.image-circle img {
+  width: 30px;
+  height: auto;
+}
+
+.service-title {
+  font-size: 20px;
+  color: #368387;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 16px;
+  color: #558a8d;
+}
+
+/* Carousel controls */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.control-left,
+.control-right {
+  font-size: 24px;
+  color: #368387;
+  cursor: pointer;
+  background-color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin: 0 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.control-left:hover,
+.control-right:hover {
+  background-color: rgba(67, 186, 127, 0.1);
+}
+
+.control-left.disabled,
+.control-right.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.service-heading {
+  font-size: 35px;
+  color: #368387;
+  margin-top: 15px;
+}
