@@ -9,6 +9,8 @@ const appointmentsRoutes = require('./routes/appointments');
 const contactRoutes = require('./routes/contact');
 const loginRoutes = require('./routes/login'); 
 const signupRoutes = require('./routes/signup'); 
+const doctorDashboardRoutes = require('./routes/doctorDashboard');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;  // Use the port from the .env file or default to 5000
@@ -24,6 +26,8 @@ app.use('/appointments', appointmentsRoutes);
 app.use('/contact', contactRoutes);
 app.use('/api/login', loginRoutes); 
 app.use('/api/signup', signupRoutes); 
+app.use('/doctor-dashboard', doctorDashboardRoutes);
+
 
 // Start the server
 app.listen(PORT, () => {
