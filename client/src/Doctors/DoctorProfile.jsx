@@ -18,6 +18,22 @@ const DoctorProfile = () => {
   const [symptoms, setSymptoms] = useState('');
   const [confirmation, setConfirmation] = useState(''); // Store confirmation message
 
+  const [availableTimes, setAvailableTimes] = useState([]);
+
+  useEffect(() => {
+    const fetchAvailableTimes = async () => {
+      const times = await getAvailableTimesForSelectedDay();
+      setAvailableTimes(times);
+    };
+  
+    if (selectedDate) {
+      fetchAvailableTimes();
+    } else {
+      setAvailableTimes([]);
+    }
+  }, [selectedDate, schedule]);
+  
+
   useEffect(() => {
     // Fetch the doctor's data by id
     const fetchDoctor = async () => {
@@ -82,20 +98,40 @@ const DoctorProfile = () => {
   };
 
   // Get available times for the selected day
-  const getAvailableTimesForSelectedDay = () => {
+  const getAvailableTimesForSelectedDay = async () => {
     if (!selectedDate) return [];
-    const selectedDayOfWeek = selectedDate.toLocaleString('en-US', { weekday: 'long' });
-    const availableSlot = schedule.find(slot => slot.available_day === selectedDayOfWeek);
-    
-    // Extract valid times and return them as an array
-    return availableSlot ? [
-      availableSlot.timeslot1,
-      availableSlot.timeslot2,
-      availableSlot.timeslot3,
-      availableSlot.timeslot4,
-      availableSlot.timeslot5
-    ].filter(Boolean) : []; // Filter out any null or undefined values
+  
+    try {
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+  
+      // Fetch booked time slots for the selected doctor and date
+      const res = await axios.get(
+        `http://localhost:5000/appointments/booked-slots/${id}/${formattedDate}`
+      );
+      const bookedSlots = res.data;
+  
+      // Find the available slots for the selected day of the week
+      const selectedDayOfWeek = selectedDate.toLocaleString('en-US', { weekday: 'long' });
+      const availableSlot = schedule.find((slot) => slot.available_day === selectedDayOfWeek);
+  
+      return availableSlot
+        ? [
+            availableSlot.timeslot1,
+            availableSlot.timeslot2,
+            availableSlot.timeslot3,
+            availableSlot.timeslot4,
+            availableSlot.timeslot5,
+          ]
+            .filter((slot) => slot && !bookedSlots.includes(slot)) // Exclude already booked slots
+        : [];
+    } catch (error) {
+      console.error('Error fetching booked slots:', error);
+      return [];
+    }
   };
+  
+  
+  
 
   // Handle the appointment submission
   const handleAppointmentSubmit = async (event) => {
@@ -203,14 +239,14 @@ const DoctorProfile = () => {
               <div className="available-times">
                 <h4>Available Times:</h4>
                 <ul>
-                  {getAvailableTimesForSelectedDay().map((timeslot, index) => (
-                    <li 
-                      key={index} 
-                      onClick={() => setSelectedTime(timeslot)}
-                      className={selectedTime === timeslot ? 'selected' : ''} // Add selected class
-                    >
-                      {timeslot}  {/* Display the timeslot value here */}
-                    </li>
+                {availableTimes.map((timeslot, index) => (
+            <li 
+              key={index} 
+              onClick={() => setSelectedTime(timeslot)}
+              className={selectedTime === timeslot ? 'selected' : ''}
+            >
+              {timeslot}
+            </li>
                   ))}
                 </ul>
               </div>

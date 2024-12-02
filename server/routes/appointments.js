@@ -108,6 +108,52 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+router.get('/booked-slots/:doctorId/:appointmentDate', (req, res) => {
+  const { doctorId, appointmentDate } = req.params;
+
+  const query = `
+    SELECT start_time
+    FROM appointments
+    WHERE doctor_id = ? AND appointment_date = ? AND status IN ('Confirmed', 'Pending')
+  `;
+
+  db.query(query, [doctorId, appointmentDate], (err, results) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ message: 'Error fetching booked slots.' });
+    }
+
+    // Return only the booked slots
+    res.status(200).json(results.map((row) => row.start_time));
+  });
+});
+
+
+
+
+// GET route to fetch booked time slots for a specific doctor and date
+router.get('/booked-slots/:doctorId/:date', (req, res) => {
+  const { doctorId, date } = req.params;
+
+  const query = `
+    SELECT start_time
+    FROM appointments
+    WHERE doctor_id = ? AND appointment_date = ?
+  `;
+
+  db.query(query, [doctorId, date], (err, results) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ message: 'Failed to fetch booked time slots.' });
+    }
+
+    // Return only the booked time slots
+    res.status(200).json(results.map((row) => row.start_time));
+  });
+});
+
+
 // DELETE route to cancel an appointment
 router.delete('/:id', async (req, res) => {
   const token = req.headers.authorization && req.headers.authorization.split(' ')[1];

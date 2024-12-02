@@ -45,18 +45,25 @@ const DoctorDashboard = () => {
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+  
       // Update appointment status locally
       setAppointments((prevAppointments) =>
         prevAppointments.map((appointment) =>
           appointment.id === appointmentId ? { ...appointment, status: newStatus } : appointment
         )
       );
-      alert('Appointment status updated successfully.');
+  
+      if (newStatus === 'Cancelled') {
+        alert('Appointment status updated to Cancelled. The time slot is now available.');
+      } else {
+        alert('Appointment status updated successfully.');
+      }
     } catch (error) {
       console.error('Error updating appointment status:', error);
       alert('Failed to update appointment status. Please try again later.');
     }
   };
+  
 
   const formatDate = (date) => new Date(date).toISOString().split('T')[0];
   const formatTime = (time) => new Date(`1970-01-01T${time}Z`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
