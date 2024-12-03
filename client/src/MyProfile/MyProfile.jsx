@@ -1,12 +1,16 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import './MyProfile.css';
+
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext); // Access user data from context
   const [appointments, setAppointments] = useState([]); // Store appointments
   const [loading, setLoading] = useState(true); // Loading state
+  const navigate = useNavigate(); // Declare useNavigate
+
 
   useEffect(() => {
     if (user) {
@@ -48,6 +52,12 @@ const MyProfile = () => {
         return {};
     }
   };
+
+  const handleEditAppointment = (appointment) => {
+    // Navigate to DoctorProfile with the appointment details
+    navigate(`/doctors/${appointment.doctor_id}`, { state: { appointment } });
+  };
+  
 
   const handleCancelAppointment = async (appointmentId) => {
     const confirmCancel = window.confirm('Are you sure you want to cancel this appointment?');
@@ -145,11 +155,32 @@ const MyProfile = () => {
                       </span>
                     </p>
                     <button
-                      onClick={() => handleCancelAppointment(appointment.id)}
-                      className="cancel-button"
-                    >
-                      Cancel Appointment
-                    </button>
+  onClick={() => {
+    if (['Cancelled', 'Confirmed'].includes(appointment.status)) {
+      alert('You cannot cancel this appointment as it is already Cancelled or Confirmed.');
+      return;
+    }
+    handleCancelAppointment(appointment.id);
+  }}
+  className="cancel-button"
+>
+  Cancel Appointment
+</button>
+
+
+                    <button
+  onClick={() => navigate(`/doctors/${appointment.doctor_id}`, {
+    state: {
+      isEditing: true,
+      appointment,
+    },
+  })}
+  className="edit-button"
+  disabled={['Cancelled', 'Confirmed'].includes(appointment.status)} // Disable if status is Cancelled or Confirmed
+>
+  Edit Appointment
+</button>
+
                   </div>
                 </div>
               </div>

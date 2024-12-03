@@ -1,14 +1,26 @@
+
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker'; // Import the date picker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for the date picker
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom'; // Import useLocation and useParams
 import './DoctorProfile.css'; // Custom styling
 
 const DoctorProfile = () => {
+  const location = useLocation();
   const { id } = useParams(); // Get the doctor's id from the URL
+
+  // Appointment editing state
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingAppointmentId, setEditingAppointmentId] = useState(null);
+
+  // Doctor and scheduling data
   const [doctor, setDoctor] = useState(null);
-  const [schedule, setSchedule] = useState([]);  // Store the doctor's available schedule
+  const [schedule, setSchedule] = useState([]); // Store the doctor's available schedule
+  const [availableTimes, setAvailableTimes] = useState([]);
+
+  // Appointment form fields
   const [selectedDate, setSelectedDate] = useState(null); // Date from calendar
   const [selectedTime, setSelectedTime] = useState('');
   const [fullName, setFullName] = useState('');
@@ -18,21 +30,34 @@ const DoctorProfile = () => {
   const [symptoms, setSymptoms] = useState('');
   const [confirmation, setConfirmation] = useState(''); // Store confirmation message
 
-  const [availableTimes, setAvailableTimes] = useState([]);
+  useEffect(() => {
+    // Check if editing mode is enabled
+    if (location.state?.isEditing) {
+      const appointment = location.state.appointment;
+      setIsEditing(true);
+      setEditingAppointmentId(appointment.id);
+      setSelectedDate(new Date(appointment.appointment_date));
+      setSelectedTime(appointment.start_time);
+      setFullName(appointment.full_name);
+      setEmail(appointment.email);
+      setPhone(appointment.phone);
+      setDob(new Date(appointment.dob).toISOString().split('T')[0]); // Ensure dob is formatted as YYYY-MM-DD
+      setSymptoms(appointment.symptoms || '');
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const fetchAvailableTimes = async () => {
       const times = await getAvailableTimesForSelectedDay();
       setAvailableTimes(times);
     };
-  
+
     if (selectedDate) {
       fetchAvailableTimes();
     } else {
       setAvailableTimes([]);
     }
   }, [selectedDate, schedule]);
-  
 
   useEffect(() => {
     // Fetch the doctor's data by id
@@ -50,10 +75,10 @@ const DoctorProfile = () => {
       try {
         const res = await axios.get(`http://localhost:5000/doctors/${id}/schedule`);
         setSchedule(res.data); // Set the available schedule for the doctor
-        
+
         // Set the closest available date
         const closestDate = findClosestAvailableDate(res.data);
-        if (closestDate) {
+        if (!isEditing && closestDate) {
           setSelectedDate(closestDate);
         }
       } catch (error) {
@@ -63,14 +88,14 @@ const DoctorProfile = () => {
 
     fetchDoctor();
     fetchSchedule();
-  }, [id]); // Re-fetch if the id changes
+  }, [id, isEditing]); // Re-fetch if the id changes or editing mode is toggled
 
   // Function to find the closest available date
   const findClosestAvailableDate = (schedule) => {
     const today = new Date();
     const availableDates = [];
 
-    schedule.forEach(slot => {
+    schedule.forEach((slot) => {
       const dayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(slot.available_day);
       const nextAvailableDate = new Date(today);
       nextAvailableDate.setDate(today.getDate() + (dayIndex + 7 - today.getDay()) % 7);
@@ -83,7 +108,7 @@ const DoctorProfile = () => {
   };
 
   // Highlight available days in the calendar
-  const highlightAvailableDays = schedule.map(slot => {
+  const highlightAvailableDays = schedule.map((slot) => {
     const today = new Date();
     const dayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(slot.available_day);
     const nextAvailableDate = new Date(today);
@@ -94,26 +119,26 @@ const DoctorProfile = () => {
   // Check if the selected date is available
   const isAvailableDay = (date) => {
     const dayOfWeek = date.toLocaleString('en-US', { weekday: 'long' });
-    return schedule.some(slot => slot.available_day === dayOfWeek);
+    return schedule.some((slot) => slot.available_day === dayOfWeek);
   };
 
   // Get available times for the selected day
   const getAvailableTimesForSelectedDay = async () => {
     if (!selectedDate) return [];
-  
+
     try {
       const formattedDate = selectedDate.toISOString().split('T')[0];
-  
+
       // Fetch booked time slots for the selected doctor and date
       const res = await axios.get(
         `http://localhost:5000/appointments/booked-slots/${id}/${formattedDate}`
       );
       const bookedSlots = res.data;
-  
+
       // Find the available slots for the selected day of the week
       const selectedDayOfWeek = selectedDate.toLocaleString('en-US', { weekday: 'long' });
       const availableSlot = schedule.find((slot) => slot.available_day === selectedDayOfWeek);
-  
+
       return availableSlot
         ? [
             availableSlot.timeslot1,
@@ -121,16 +146,14 @@ const DoctorProfile = () => {
             availableSlot.timeslot3,
             availableSlot.timeslot4,
             availableSlot.timeslot5,
-          ]
-            .filter((slot) => slot && !bookedSlots.includes(slot)) // Exclude already booked slots
+          ].filter((slot) => slot && !bookedSlots.includes(slot)) // Exclude already booked slots
         : [];
     } catch (error) {
       console.error('Error fetching booked slots:', error);
       return [];
     }
   };
-  
-  
+
   
 
   // Handle the appointment submission
@@ -148,7 +171,7 @@ const DoctorProfile = () => {
     try {
       const appointmentData = {
         doctor_id: id,
-        appointment_date: selectedDate.toISOString().split('T')[0], // Format to YYYY-MM-DD
+        appointment_date: selectedDate?.toISOString().split('T')[0], // Format to YYYY-MM-DD
         start_time: selectedTime,
         full_name: fullName,
         email: email,
@@ -157,14 +180,24 @@ const DoctorProfile = () => {
         symptoms: symptoms,
       };
   
+      const endpoint = isEditing
+        ? `http://localhost:5000/appointments/${editingAppointmentId}`
+        : `http://localhost:5000/appointments`;
+  
+      const method = isEditing ? 'PATCH' : 'POST';
+  
       // Send the token in the Authorization header
-      const response = await axios.post('http://localhost:5000/appointments', appointmentData, {
+      const response = await axios({
+        method,
+        url: endpoint,
+        data: appointmentData,
         headers: {
-          Authorization: `Bearer ${token}`,  // Add the token here
+          Authorization: `Bearer ${token}`, // Add the token here
         },
       });
   
-      setConfirmation('Appointment successfully booked!');
+      // Set success message based on action
+      setConfirmation(isEditing ? 'Appointment successfully updated!' : 'Appointment successfully booked!');
   
       // Clear the form fields after successful submission
       setFullName('');
@@ -174,11 +207,23 @@ const DoctorProfile = () => {
       setSymptoms('');
       setSelectedDate(null);
       setSelectedTime('');
+      setEditingAppointmentId(null); // Reset editing state
+      setIsEditing(false);
     } catch (error) {
-      console.error('Error booking appointment:', error.response?.data || error);
-      alert(`Failed to book appointment: ${error.response?.data?.message || error.message}`);
+      console.error('Error handling appointment:', error.response?.data || error);
+  
+      // Handle specific cases for duplicate entries or token expiration
+      if (error.response?.status === 409) {
+        alert('This time slot is already booked. Please choose a different time.');
+      } else if (error.response?.status === 401) {
+        alert('Your session has expired. Please log in again.');
+      } else {
+        alert(`Failed to process appointment: ${error.response?.data?.message || error.message}`);
+      }
     }
   };
+  
+
   
   
 

@@ -70,6 +70,47 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+// Update an appointment
+router.patch('/:id', async (req, res) => {
+  const { id } = req.params;
+  const {
+    doctor_id,
+    appointment_date,
+    start_time,
+    full_name,
+    email,
+    phone,
+    dob,
+    symptoms,
+  } = req.body;
+
+  const query = `
+    UPDATE appointments
+    SET doctor_id = ?, appointment_date = ?, start_time = ?, full_name = ?, email = ?, phone = ?, dob = ?, symptoms = ?
+    WHERE id = ?
+  `;
+
+  db.query(
+    query,
+    [doctor_id, appointment_date, start_time, full_name, email, phone, dob, symptoms, id],
+    (err, result) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ message: 'Error updating appointment.' });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Appointment not found.' });
+      }
+
+      res.status(200).json({ message: 'Appointment updated successfully.' });
+    }
+  );
+});
+
+module.exports = router;
+
 // GET route to fetch appointments for the logged-in user
 router.get('/', async (req, res) => {
   const token = req.headers.authorization && req.headers.authorization.split(' ')[1]; // Get token from header
