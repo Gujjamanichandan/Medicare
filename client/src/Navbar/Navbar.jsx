@@ -75,8 +75,9 @@ const Navbar = () => {
 
       <div className="second-section">
         <div className="container">
-          <img src="/logo.png" alt="Logo" className="logo" /> {/* Logo Image */}
-          
+        <Link to="/">
+          <img src="/logo.png" alt="Logo" className="logo" />
+        </Link>          
           {/* Hamburger Menu Button */}
           <button className="hamburger" onClick={() => setMenuVisible(!menuVisible)}>
             &#9776;

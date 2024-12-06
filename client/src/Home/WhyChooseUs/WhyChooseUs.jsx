@@ -1,6 +1,7 @@
 import React from 'react';
-import './WhyChooseUs.css'; 
-import backgroundVideo from './video3.mp4'; 
+import { Link } from 'react-router-dom';
+import './WhyChooseUs.css';
+import backgroundVideo from './video3.mp4';
 
 
 const WhyChooseUs = () => {
@@ -15,8 +16,9 @@ const WhyChooseUs = () => {
           <li className="list-item">Discount for all medical treatment</li>
           <li className="list-item">Enrollment is quick and easy</li>
         </ul>
+        <Link to="/doctors">
         <button className="book-appointment-btn">Book Appointment</button>
-      </div>
+      </Link>      </div>
 
       <div className="right-column">
       <video className="background-video" autoPlay loop muted playsInline>

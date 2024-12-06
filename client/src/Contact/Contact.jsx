@@ -45,13 +45,13 @@ const Contact = () => {
       <div className="contact-header">
         <div className="container">
           <h1>Contact Us</h1>
-          <div className="inside-vector-wrap">
+          {/* <div className="inside-vector-wrap">
             <img src="https://cdn.prod.website-files.com/65c992c37023d69385565acc/65c9e13f750e419cee597826_Inside-vector-semi-small.svg" alt="Vector" className="inside-vector-semi-small" />
             <img src="https://cdn.prod.website-files.com/65c992c37023d69385565acc/65c9de018f2da12e347fcd04_Inside-vector-small.svg" alt="Vector" className="inside-vector-small" />
             <img src="https://cdn.prod.website-files.com/65c992c37023d69385565acc/65c9e204960864bf2bf89d45_Inside-vector-medium.svg" alt="Vector" className="inside-vector-medium" />
             <img src="https://cdn.prod.website-files.com/65c992c37023d69385565acc/65c9e2c5ec86042bc9b16610_Inside-vector-large.svg" alt="Vector" className="inside-vector-large" />
             <img src="https://cdn.prod.website-files.com/65c992c37023d69385565acc/65c9e4d5c6aa622c9820a98d_Inside-vector-semi-large.svg" alt="Vector" className="inside-vector-semi-large" />
-          </div>
+          </div> */}
         </div>
       </div>
 
