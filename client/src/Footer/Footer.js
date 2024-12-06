@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhone, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -24,11 +25,11 @@ const Footer = () => {
         <div className="footer-column2">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#patient-portal">Patient Portal</a></li>
-            <li><a href="#doctors-portal">Doctors Portal</a></li>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#privacy-policy">Privacy Policy</a></li>
-            <li><a href="#appointment">Appointment</a></li>
+          <li><Link to="/">Home</Link></li>  
+      <li><Link to="/about">About Us</Link></li> 
+      <li><Link to="/doctors">Doctors</Link></li> 
+      <li><Link to="/login">Login</Link></li> 
+      <li><Link to="/signup">Sign Up</Link></li> 
           </ul>
         </div>
 
