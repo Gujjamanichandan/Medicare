@@ -249,3 +249,19 @@ section {
   border-radius: 5px;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  #firsthead {
+    margin-left: 0%;
+    font-size: 30px;
+  }
+  .stay-healthy-section {
+    padding: 0px 0;
+    text-align: center;
+  }
+  .doctors {
+    display: grid;
+  }
+  .doctor {
+    width: 94%;
+  }
+}
