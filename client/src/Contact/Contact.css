@@ -384,6 +384,9 @@ textarea {
     width: 100%;
   }
 
+  .box-1, .box-2, .box-3 {
+    width: 87%;
+
   .box-1,
   .box-2,
   .box-3 {
