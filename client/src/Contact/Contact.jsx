@@ -45,6 +45,7 @@ const Contact = () => {
       <div className="contact-header">
         <div className="container">
           <h1>Contact Us</h1>
+
         </div>
       </div>
 

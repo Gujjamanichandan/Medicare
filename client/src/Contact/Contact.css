@@ -114,7 +114,7 @@ textarea {
 .box-container {
   width: 1200px;
   display: flex;
-  
+
   margin: 0 auto;
   font-family: "Noto Sans", sans-serif;
 }
@@ -254,7 +254,8 @@ textarea {
   margin-bottom: 20px;
 }
 
-.contact-input, .contact-textarea {
+.contact-input,
+.contact-textarea {
   width: 100%;
   padding: 15px;
   border: 1px solid #e0e0e0;
@@ -264,7 +265,8 @@ textarea {
   background-color: var(--white-color-bg);
 }
 
-.contact-input::placeholder, .contact-textarea::placeholder {
+.contact-input::placeholder,
+.contact-textarea::placeholder {
   color: #ccc;
 }
 
@@ -293,8 +295,6 @@ textarea {
 .contact-submit-button:hover {
   background-color: #238f5a;
 }
-
-/*contact page*/
 
 /* Contact.css */
 
@@ -366,8 +366,6 @@ textarea {
 
 /* Mobile devices (up to 600px) */
 @media (max-width: 600px) {
- 
-
   .contact-columns {
     flex-direction: column;
     gap: 10px;
@@ -388,6 +386,11 @@ textarea {
 
   .box-1, .box-2, .box-3 {
     width: 87%;
+
+  .box-1,
+  .box-2,
+  .box-3 {
+    width: 100%;
     margin: 10px 0;
   }
 
@@ -407,8 +410,6 @@ textarea {
 
 /* Tablet devices (601px to 768px) */
 @media (min-width: 601px) and (max-width: 768px) {
-  
-
   .contact-columns {
     flex-direction: column;
     gap: 15px;
@@ -428,7 +429,9 @@ textarea {
     width: 100%;
   }
 
-  .box-1, .box-2, .box-3 {
+  .box-1,
+  .box-2,
+  .box-3 {
     width: 45%;
     margin: 10px;
   }
@@ -445,8 +448,6 @@ textarea {
 
 /* Small desktops (769px to 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  
-
   .contact-columns {
     flex-direction: row;
     gap: 20px;
@@ -465,7 +466,9 @@ textarea {
     width: 100%;
   }
 
-  .box-1, .box-2, .box-3 {
+  .box-1,
+  .box-2,
+  .box-3 {
     width: 30%;
     margin: 15px;
   }
@@ -478,6 +481,3 @@ textarea {
     grid-template-columns: 1fr 1fr;
   }
 }
-
-
-

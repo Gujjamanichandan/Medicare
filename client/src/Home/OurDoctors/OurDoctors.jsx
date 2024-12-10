@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './OurDoctors.css';
 
 const doctors = [
@@ -39,8 +40,9 @@ const OurDoctors = () => {
           </h2>
         </div>
         <div className="right-column">
-          <button className="view-all-doctors-btn">View All Doctors</button>
-        </div>
+        <Link to="/doctors">
+        <button className="view-all-doctors-btn">View All Doctors</button>
+      </Link>        </div>
       </div>
 
       <div className="doctors-grid-home">
